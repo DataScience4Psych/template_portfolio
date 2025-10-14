@@ -9,7 +9,7 @@ title: "Portfolio 9"
 For each project in your portfolio, provide a comprehensive description that addresses:
 
 - **Goal**: What research question or problem were you investigating? What were you trying to accomplish or understand?
-- **Product**: What type of output did you create (e.g., R script, visualization, statistical analysis, interactive dashboard)? Describe the technical approach.
+- **Product**: What type of output did you create (e.g., R Markdown report, R script, Shiny application, data visualization, statistical analysis, reproducible analysis)? Describe the technical approach.
 - **Data**: What dataset(s) did you use? Include relevant details such as source, sample size, key variables, and any data preparation steps.
 - **Interpretation**: What insights did you gain? What do the results mean in context? What limitations or future directions should be considered?
 
