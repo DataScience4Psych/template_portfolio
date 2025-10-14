@@ -3,3 +3,14 @@ title: "Portfolio 5"
 ---
 
 > The projects should be numbered consecutively (i.e., in the order in which you began them), and should include for each project a description of the goal, the product (computer program, hand graph, computer graph, etc.), the data, and some interpretation. Reports must be reproducible and of high quality in terms of writing, grammar, presentation, etc.
+
+## Project Description Guidelines
+
+For each project in your portfolio, provide a comprehensive description that addresses:
+
+- **Goal**: What research question or problem were you investigating? What were you trying to accomplish or understand?
+- **Product**: What type of output did you create (e.g., R script, visualization, statistical analysis, interactive dashboard)? Describe the technical approach.
+- **Data**: What dataset(s) did you use? Include relevant details such as source, sample size, key variables, and any data preparation steps.
+- **Interpretation**: What insights did you gain? What do the results mean in context? What limitations or future directions should be considered?
+
+You may structure your descriptions using headings, narrative paragraphs, or a combination that best communicates your work. Aim for clarity and sufficient detail for a knowledgeable reader to understand your approach and findings without being overly verbose.
