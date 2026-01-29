@@ -1,6 +1,6 @@
 # Readme
 
-This template is optional, but it is one potential way to help you organize your portfolio pieces. 
+This template is optional, but it is one potential way to help you organize your portfolio pieces. It is built using GitHub Pages, which allows you to host a website directly from a GitHub repository. By using this template, you can easily create a professional-looking portfolio to showcase your work. Please check out the [assignment instructions for more details on how to use this template effectively](https://datascience4psych.github.io/DataScience4Psych/guidance.html#portfolio-template)
 
 ## Getting Started
 
