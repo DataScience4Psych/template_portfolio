@@ -2,12 +2,17 @@
 title: "Portfolio 1"
 ---
 
-> The projects should be numbered consecutively (i.e., in the order in which you began them), and should include for each project a description of the goal, the product (computer program, hand graph, computer graph, etc.), the data, and some interpretation. Reports must be reproducible and of high quality in terms of writing, grammar, presentation, etc.
+> This is the first portfolio for the course. The purpose of this portfolio is to demonstrate your ability to use R for data analysis and visualization, as well as your ability to communicate your findings effectively. Across the template, you will find a variety of code chunks and text that can be used as a starting point for your own work. You should replace the example code and text with your own work, and you should expand upon it as needed. The goal of this portfolio is to demonstrate your ability to use R for data analysis and visualization, as well as your ability to communicate your findings effectively. I also recommend you add in some personal information about yourself, your goals for the course, and any other information you think is relevant to include in your portfolio. This can help make your portfolio more personal and engaging for readers. (You should probably delete these instructions from your final portfolio, but I wanted to include them here to help you get started and provide some guidance on what to include in your portfolio.)
+
+
+The projects should be numbered consecutively (i.e., in the order in which you began them), and should include for each project a description of the goal, the product (computer program, hand graph, computer graph, etc.), the data, and some interpretation. Reports must be reproducible and of high quality in terms of writing, grammar, presentation, etc. 
+
+The template for this portfolio is an R Markdown document. You can use this template to create your portfolio, and you can modify it as needed. The template includes some example code and text, which you should replace and expand upon with your own work. The goal of this portfolio is to demonstrate your ability to use R for data analysis and visualization, as well as your ability to communicate your findings effectively.
 
 ```{r load-packages, warning = FALSE, message=FALSE}
 library(tidyverse) 
 library(tidyr)
-data(fish_encounters)
+library(synthpop)
 ```
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eget nibh vel est aliquet iaculis at placerat sem. Aenean faucibus iaculis ultricies. Nullam consequat odio in ultricies ullamcorper. Etiam venenatis in est vitae ullamcorper. Nam vitae urna ut dolor rhoncus aliquet at vel neque. Quisque tristique leo finibus nisi interdum, sit amet tempor risus viverra. Donec mollis vulputate sodales. Nunc ornare, leo quis euismod eleifend, eros mi maximus felis, vel varius lacus dui eget nibh. Duis vitae nunc nisl. Donec accumsan aliquam elit, eu fringilla quam pulvinar eget.
@@ -17,10 +22,11 @@ Mauris in ligula mauris. Curabitur facilisis pharetra metus eget lobortis. In eg
 
 
 ```{r}
+data(fish_encounters)
 # Create a barplot of the number of fish encounters by species
 ggplot(data = fish_encounters, aes(x = station, y = seen)) +
   geom_bar(stat = "identity") +
-  labs(x = "Species", y = "Number of Fish Encounters")
+  labs(x = "Station", y = "Number of Fish Encounters")
   
 ```
 
@@ -29,11 +35,13 @@ Sed mollis purus faucibus leo finibus, ut pharetra nibh elementum. Nulla id orci
 
 
 ```{r}
-# Create a barplot of the number of fish encounters by species
-ggplot(data = fish_encounters, aes(x = station, y = seen)) +
-  geom_bar(stat = "identity") +
-  labs(x = "Species", y = "Number of Fish Encounters") +
-  theme_minimal()
+
+data(uspop)
+
+plot(uspop, log = "y", xlab = "Year",
+     ylab = "U.S. Population (millions)",
+     main = "U.S. Population Growth")
+ 
   
 ```
 
@@ -41,12 +49,19 @@ Mauris placerat in velit a pharetra. Nulla viverra bibendum lectus, ut lobortis 
 
 
 ```{r}
-# Create a barplot of the number of fish encounters by species
-ggplot(data = fish_encounters, aes(x = station, y = seen)) +
-  geom_bar(stat = "identity") +
-  labs(x = "Species", y = "Number of Fish Encounters") +
-  theme_classic()
-  
+library(synthpop)
+
+### default synthesis of selected variables
+vars <- c("sex", "age", "edu", "smoke")
+ods  <- na.omit(SD2011[1:1000, vars])
+s1 <- syn(ods)
+
+### categorical var
+multi.compare(s1, ods, var = "smoke", by = c("sex","edu"))
+
+### numeric var
+multi.compare(s1, ods, var = "age", by = c("sex"), y.hist = "density", binwidth = 5)
+multi.compare(s1, ods, var = "age", by = c("sex", "edu"), cont.type = "boxplot")
 ```
 
 Donec sagittis suscipit orci in ultrices. Vivamus iaculis eleifend est et dictum. Fusce non urna at lacus dapibus tincidunt ac sed nibh. Donec luctus lectus elit, ac ultrices tortor mollis sit amet. Nulla finibus lacinia arcu. Proin sollicitudin non odio et pulvinar. Maecenas finibus faucibus finibus. Ut elementum metus velit, a sodales sapien commodo et. Vivamus pulvinar, sapien et porta cursus, elit est luctus nisi, eget fringilla odio diam et enim. Sed sodales suscipit bibendum. Morbi ut metus semper, laoreet felis sodales, consequat dolor.
