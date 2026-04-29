@@ -41,3 +41,4 @@ vignettes/*.pdf
 # Specific keeps
 !.gitkeep
 *conflicted copy*
+docs/p01/.DS_Store

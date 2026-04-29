@@ -13,7 +13,7 @@
 
 <title>Portfolio 1</title>
 
-<script src="site_libs/header-attrs-2.30/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.31/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -278,6 +278,9 @@ $(document).ready(function () {
 <li>
   <a href="p10.html">Portfolio 10</a>
 </li>
+<li>
+  <a href="p11.html">Portfolio 11</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -296,15 +299,38 @@ $(document).ready(function () {
 
 
 <blockquote>
+<p>This is the first portfolio for the course. The purpose of this
+portfolio is to demonstrate your ability to use R for data analysis and
+visualization, as well as your ability to communicate your findings
+effectively. Across the template, you will find a variety of code chunks
+and text that can be used as a starting point for your own work. You
+should replace the example code and text with your own work, and you
+should expand upon it as needed. The goal of this portfolio is to
+demonstrate your ability to use R for data analysis and visualization,
+as well as your ability to communicate your findings effectively. I also
+recommend you add in some personal information about yourself, your
+goals for the course, and any other information you think is relevant to
+include in your portfolio. This can help make your portfolio more
+personal and engaging for readers. (You should probably delete these
+instructions from your final portfolio, but I wanted to include them
+here to help you get started and provide some guidance on what to
+include in your portfolio.)</p>
+</blockquote>
 <p>The projects should be numbered consecutively (i.e., in the order in
 which you began them), and should include for each project a description
 of the goal, the product (computer program, hand graph, computer graph,
 etc.), the data, and some interpretation. Reports must be reproducible
 and of high quality in terms of writing, grammar, presentation, etc.</p>
-</blockquote>
+<p>The template for this portfolio is an R Markdown document. You can
+use this template to create your portfolio, and you can modify it as
+needed. The template includes some example code and text, which you
+should replace and expand upon with your own work. The goal of this
+portfolio is to demonstrate your ability to use R for data analysis and
+visualization, as well as your ability to communicate your findings
+effectively.</p>
 <pre class="r"><code>library(tidyverse) 
 library(tidyr)
-data(fish_encounters)</code></pre>
+library(synthpop)</code></pre>
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
 eget nibh vel est aliquet iaculis at placerat sem. Aenean faucibus
 iaculis ultricies. Nullam consequat odio in ultricies ullamcorper. Etiam
@@ -328,10 +354,11 @@ libero, non posuere odio molestie ut. Curabitur lacus enim, viverra vel
 odio non, pretium efficitur elit. Mauris posuere efficitur interdum.
 Nunc sed bibendum turpis, quis fringilla velit. Phasellus eu lorem
 lobortis eros molestie laoreet.</p>
-<pre class="r"><code># Create a barplot of the number of fish encounters by species
+<pre class="r"><code>data(fish_encounters)
+# Create a barplot of the number of fish encounters by species
 ggplot(data = fish_encounters, aes(x = station, y = seen)) +
   geom_bar(stat = &quot;identity&quot;) +
-  labs(x = &quot;Species&quot;, y = &quot;Number of Fish Encounters&quot;)</code></pre>
+  labs(x = &quot;Station&quot;, y = &quot;Number of Fish Encounters&quot;)</code></pre>
 <p><img src="p01_files/figure-html/unnamed-chunk-1-1.png" alt="" width="672" /></p>
 <p>Sed mollis purus faucibus leo finibus, ut pharetra nibh elementum.
 Nulla id orci lorem. Mauris sollicitudin mi eget tellus vehicula, ut
@@ -340,10 +367,11 @@ interdum. Ut elementum elit at velit maximus, ac tempor odio porttitor.
 Suspendisse lobortis sollicitudin tortor, ut pharetra libero luctus a.
 Sed hendrerit faucibus metus. Sed rutrum purus vel pellentesque
 euismod.</p>
-<pre class="r"><code># Create a barplot of the number of fish encounters by species
-ggplot(data = fish_encounters, aes(x = station, y = seen)) +
-  geom_bar(stat = &quot;identity&quot;) +
-  labs(x = &quot;Species&quot;, y = &quot;Number of Fish Encounters&quot;)</code></pre>
+<pre class="r"><code>data(uspop)
+
+plot(uspop, log = &quot;y&quot;, xlab = &quot;Year&quot;,
+     ylab = &quot;U.S. Population (millions)&quot;,
+     main = &quot;U.S. Population Growth&quot;)</code></pre>
 <p><img src="p01_files/figure-html/unnamed-chunk-2-1.png" alt="" width="672" /></p>
 <p>Mauris placerat in velit a pharetra. Nulla viverra bibendum lectus,
 ut lobortis nibh. Aenean malesuada, orci vitae dictum placerat, enim
@@ -352,11 +380,55 @@ metus, nec molestie felis. Duis varius rhoncus pulvinar. Integer semper
 urna sed tellus rhoncus, vel suscipit odio iaculis. Mauris iaculis neque
 pellentesque ex convallis venenatis. Sed ultrices euismod fermentum. Ut
 feugiat risus at turpis tincidunt viverra.</p>
-<pre class="r"><code># Create a barplot of the number of fish encounters by species
-ggplot(data = fish_encounters, aes(x = station, y = seen)) +
-  geom_bar(stat = &quot;identity&quot;) +
-  labs(x = &quot;Species&quot;, y = &quot;Number of Fish Encounters&quot;)</code></pre>
+<pre class="r"><code>library(synthpop)
+
+### default synthesis of selected variables
+vars &lt;- c(&quot;sex&quot;, &quot;age&quot;, &quot;edu&quot;, &quot;smoke&quot;)
+ods  &lt;- na.omit(SD2011[1:1000, vars])
+s1 &lt;- syn(ods)</code></pre>
+<pre><code>## 
+## Synthesis
+## -----------
+##  sex age edu smoke</code></pre>
+<pre class="r"><code>### categorical var
+multi.compare(s1, ods, var = &quot;smoke&quot;, by = c(&quot;sex&quot;,&quot;edu&quot;))</code></pre>
+<pre><code>## 
+## Plots of  smoke  by  sex edu 
+## Numbers in each plot (observed data):
+## 
+##         edu
+## sex      PRIMARY/NO EDUCATION VOCATIONAL/GRAMMAR SECONDARY
+##   MALE                     65                189       122
+##   FEMALE                  100                147       190
+##         edu
+## sex      POST-SECONDARY OR HIGHER
+##   MALE                         69
+##   FEMALE                      115</code></pre>
 <p><img src="p01_files/figure-html/unnamed-chunk-3-1.png" alt="" width="672" /></p>
+<pre class="r"><code>### numeric var
+multi.compare(s1, ods, var = &quot;age&quot;, by = c(&quot;sex&quot;), y.hist = &quot;density&quot;, binwidth = 5)</code></pre>
+<pre><code>## 
+## Plots of  age  by  sex 
+## Numbers in each plot (observed data):
+## 
+## sex
+##   MALE FEMALE 
+##    445    552</code></pre>
+<p><img src="p01_files/figure-html/unnamed-chunk-3-2.png" alt="" width="672" /></p>
+<pre class="r"><code>multi.compare(s1, ods, var = &quot;age&quot;, by = c(&quot;sex&quot;, &quot;edu&quot;), cont.type = &quot;boxplot&quot;)</code></pre>
+<pre><code>## 
+## Plots of  age  by  sex edu 
+## Numbers in each plot (observed data):
+## 
+##         edu
+## sex      PRIMARY/NO EDUCATION VOCATIONAL/GRAMMAR SECONDARY
+##   MALE                     65                189       122
+##   FEMALE                  100                147       190
+##         edu
+## sex      POST-SECONDARY OR HIGHER
+##   MALE                         69
+##   FEMALE                      115</code></pre>
+<p><img src="p01_files/figure-html/unnamed-chunk-3-3.png" alt="" width="672" /></p>
 <p>Donec sagittis suscipit orci in ultrices. Vivamus iaculis eleifend
 est et dictum. Fusce non urna at lacus dapibus tincidunt ac sed nibh.
 Donec luctus lectus elit, ac ultrices tortor mollis sit amet. Nulla
