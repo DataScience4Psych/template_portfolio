@@ -391,7 +391,9 @@ s1 &lt;- syn(ods)</code></pre>
 ## -----------
 ##  sex age edu smoke</code></pre>
 <pre class="r"><code>### categorical var
-multi.compare(s1, ods, var = &quot;smoke&quot;, by = c(&quot;sex&quot;,&quot;edu&quot;))</code></pre>
+multi.compare(s1, ods, 
+              var = &quot;smoke&quot;, 
+              by = c(&quot;sex&quot;,&quot;edu&quot;))</code></pre>
 <pre><code>## 
 ## Plots of  smoke  by  sex edu 
 ## Numbers in each plot (observed data):
@@ -406,7 +408,10 @@ multi.compare(s1, ods, var = &quot;smoke&quot;, by = c(&quot;sex&quot;,&quot;edu
 ##   FEMALE                      115</code></pre>
 <p><img src="p01_files/figure-html/unnamed-chunk-3-1.png" alt="" width="672" /></p>
 <pre class="r"><code>### numeric var
-multi.compare(s1, ods, var = &quot;age&quot;, by = c(&quot;sex&quot;), y.hist = &quot;density&quot;, binwidth = 5)</code></pre>
+multi.compare(s1, ods, var = &quot;age&quot;, 
+              by = c(&quot;sex&quot;), 
+              y.hist = &quot;density&quot;, 
+              binwidth = 5)</code></pre>
 <pre><code>## 
 ## Plots of  age  by  sex 
 ## Numbers in each plot (observed data):
@@ -415,7 +420,9 @@ multi.compare(s1, ods, var = &quot;age&quot;, by = c(&quot;sex&quot;), y.hist = 
 ##   MALE FEMALE 
 ##    445    552</code></pre>
 <p><img src="p01_files/figure-html/unnamed-chunk-3-2.png" alt="" width="672" /></p>
-<pre class="r"><code>multi.compare(s1, ods, var = &quot;age&quot;, by = c(&quot;sex&quot;, &quot;edu&quot;), cont.type = &quot;boxplot&quot;)</code></pre>
+<pre class="r"><code>multi.compare(s1, ods, var = &quot;age&quot;, 
+              by = c(&quot;sex&quot;, &quot;edu&quot;), 
+              cont.type = &quot;boxplot&quot;)</code></pre>
 <pre><code>## 
 ## Plots of  age  by  sex edu 
 ## Numbers in each plot (observed data):

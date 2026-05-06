@@ -3,3 +3,225 @@ title: "Portfolio 2"
 ---
 
 > The projects should be numbered consecutively (i.e., in the order in which you began them), and should include for each project a description of the goal, the product (computer program, hand graph, computer graph, etc.), the data, and some interpretation. Reports must be reproducible and of high quality in terms of writing, grammar, presentation, etc.
+
+
+
+This template shows how to source code from an R script, and how to include the output in the report. The code is in `p02/scripts/script.R`, and the output is included below.
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  message = FALSE,
+  warning = FALSE
+)
+```
+
+# Overview
+
+This example demonstrates how to use `source()` to load reusable R functions from a separate script.
+
+In this template, the sourced script is located here:
+
+```{r show-script-path}
+script_path <- "p02/scripts/helperfunctions.R"
+
+script_path
+```
+
+The script contains functions for:
+
+- applying a consistent plot theme
+- adding plot labels
+- summarizing numeric variables
+- making histograms
+- making scatterplots
+- fitting a simple regression model
+- summarizing model results
+
+# Source the Functions
+
+The function `source()` runs the R script and loads the functions from that script into the current R session.
+
+```{r source-functions}
+source(script_path)
+```
+
+After this code runs, the functions from `theme_functions.R` are available in this R Markdown document.
+
+# Load Example Data
+
+This example uses the built-in `mtcars` dataset as well as data in the data folder of the template. The `data()` function loads the `mtcars` dataset. The `read.csv()` function loads the data from the CSV file.
+
+```{r load-data}
+data(mtcars)
+
+head(mtcars)
+
+portfolio_data <- read.csv("p02/data/portfolio_example_data.csv")
+```
+
+# Cars examples
+
+## Summarize a Numeric Variable
+
+The function `summarize_numeric()` comes from the sourced script.
+
+```{r summarize-mpg}
+summarize_numeric(
+  data = mtcars,
+  variable = "mpg"
+)
+
+```
+
+The same function can be reused for a different variable.
+
+```{r summarize-wt}
+summarize_numeric(
+  data = mtcars,
+  variable = "wt"
+)
+```
+
+Or a different dataset.
+
+```{r summarize-portfolio}
+summarize_numeric(portfolio_data, "temperature_f")
+summarize_numeric(portfolio_data, "pm25")
+
+```
+
+# Plots
+## Make a Histogram
+
+The function `make_histogram()` creates a histogram for a selected variable.
+
+```{r histogram-basic}
+make_histogram(
+  data = mtcars,
+  variable = "mpg"
+)
+
+make_histogram(portfolio_data, "pm25")
+
+```
+
+The plot can also be modified after the function creates it.
+
+```{r histogram-with-theme}
+make_histogram(portfolio_data, "pm25") +
+  theme_portfolio()
+```
+
+## Make a Scatterplot
+
+The function `make_scatterplot()` creates a scatterplot using two variables.
+
+```{r scatterplot-basic}
+
+p1 <- make_scatterplot(
+  data = mtcars,
+  x_variable = "wt",
+  y_variable = "mpg"
+)
+
+p1
+
+```
+
+We can compare the scatterplot from the `mtcars` dataset to a scatterplot from the `portfolio_data` dataset, using Cowplot to arrange them side by side.
+
+```{r scatterplot-portfolio}
+library(cowplot)
+p2 <- make_scatterplot(
+  data = portfolio_data,
+  x_variable = "traffic_index",
+  y_variable = "pm25"
+)
+
+cowplot::plot_grid(p1, p2, labels = c("A", "B"))
+```
+
+The sourced function gives us a basic plot. We can then add other sourced functions to modify it.
+
+```{r scatterplot-customized}
+scatterplot <- make_scatterplot(
+  data = mtcars,
+  x_variable = "wt",
+  y_variable = "mpg"
+)
+
+scatterplot <- add_portfolio_labels(
+  plot = scatterplot,
+  title = "Fuel Efficiency by Vehicle Weight",
+  subtitle = "Example using the built-in mtcars dataset",
+  x = "Vehicle weight",
+  y = "Miles per gallon",
+  caption = "Data source: mtcars dataset in base R."
+)
+
+scatterplot + theme_portfolio()
+```
+
+# Fit a Simple Regression Model
+
+The function `fit_simple_regression()` fits a linear regression model using variable names supplied as text.
+
+```{r fit-model}
+mpg_model <- fit_simple_regression(
+  data = mtcars,
+  outcome = "mpg",
+  predictor = "wt"
+)
+
+mpg_model
+```
+
+## Summarize the Model
+
+The function `summarize_model()` extracts the coefficient table from the regression model.
+
+```{r summarize-model}
+summarize_model(mpg_model)
+```
+
+## Use Model Results in Writing
+
+The model can also be summarized directly in the text of the portfolio.
+
+```{r model-values}
+model_summary <- summarize_model(mpg_model)
+
+slope <- model_summary$estimate[model_summary$term == "wt"]
+```
+
+In this model, the estimated slope for vehicle weight is `r round(slope, 2)`. This means that, in the `mtcars` dataset, higher vehicle weight is associated with lower miles per gallon.
+
+# Why This Is Useful
+
+Using `source()` allows us to keep reusable code in one script and use it throughout the portfolio.
+
+For example, instead of rewriting the code for a histogram, a scatterplot, or a regression model in every section of the portfolio, we can write the function once in `scripts/helperfunctions.R` and then call the function whenever we need it.
+
+# Template Structure
+
+This example assumes the following folder structure:
+
+```{r folder-structure, eval=FALSE}
+portfolio-template/
+  p02.Rmd
+  p02/
+    data/
+      portfolio_example_data.csv
+    scripts/
+      helperfunctions.R
+```
+
+# Session Information
+
+Including session information can help document the computational environment used to render the portfolio.
+
+```{r session-info}
+sessionInfo()
+```

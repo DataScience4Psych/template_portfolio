@@ -20,7 +20,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eget nibh ve
 Mauris in ligula mauris. Curabitur facilisis pharetra metus eget lobortis. In egestas nibh sit amet faucibus eleifend. Suspendisse imperdiet viverra blandit. Phasellus consectetur tincidunt eros eu facilisis. Quisque maximus, orci eget sodales aliquam, velit lorem semper dolor, nec convallis erat ipsum mattis velit. Pellentesque porttitor, mauris vitae aliquam mattis, metus nisl viverra turpis, vel convallis metus sapien et ex. Nunc consequat ipsum id dolor eleifend, sit amet semper eros sodales. Pellentesque consectetur, dui quis venenatis malesuada, nunc lorem lacinia libero, vitae malesuada dui arcu in augue. Aliquam id sagittis libero. Vestibulum aliquet sagittis libero, non posuere odio molestie ut. Curabitur lacus enim, viverra vel odio non, pretium efficitur elit. Mauris posuere efficitur interdum. Nunc sed bibendum turpis, quis fringilla velit. Phasellus eu lorem lobortis eros molestie laoreet.
 
 
-
 ```{r}
 data(fish_encounters)
 # Create a barplot of the number of fish encounters by species
@@ -57,11 +56,20 @@ ods  <- na.omit(SD2011[1:1000, vars])
 s1 <- syn(ods)
 
 ### categorical var
-multi.compare(s1, ods, var = "smoke", by = c("sex","edu"))
+multi.compare(s1, ods, 
+              var = "smoke", 
+              by = c("sex","edu"))
 
 ### numeric var
-multi.compare(s1, ods, var = "age", by = c("sex"), y.hist = "density", binwidth = 5)
-multi.compare(s1, ods, var = "age", by = c("sex", "edu"), cont.type = "boxplot")
+multi.compare(s1, ods, var = "age", 
+              by = c("sex"), 
+              y.hist = "density", 
+              binwidth = 5)
+multi.compare(s1, ods, var = "age", 
+              by = c("sex", "edu"), 
+              cont.type = "boxplot")
 ```
+
+
 
 Donec sagittis suscipit orci in ultrices. Vivamus iaculis eleifend est et dictum. Fusce non urna at lacus dapibus tincidunt ac sed nibh. Donec luctus lectus elit, ac ultrices tortor mollis sit amet. Nulla finibus lacinia arcu. Proin sollicitudin non odio et pulvinar. Maecenas finibus faucibus finibus. Ut elementum metus velit, a sodales sapien commodo et. Vivamus pulvinar, sapien et porta cursus, elit est luctus nisi, eget fringilla odio diam et enim. Sed sodales suscipit bibendum. Morbi ut metus semper, laoreet felis sodales, consequat dolor.

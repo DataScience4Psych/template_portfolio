@@ -42,3 +42,4 @@ vignettes/*.pdf
 !.gitkeep
 *conflicted copy*
 docs/p01/.DS_Store
+docs/p02/.DS_Store
